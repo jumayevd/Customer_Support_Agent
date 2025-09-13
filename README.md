@@ -177,8 +177,7 @@ Edit the `knowledge_base` dictionary in `ai_agent.py` to add your company's FAQ:
 ```python
 self.knowledge_base = {
     "shipping": "Your shipping policy here...",
-    "returns": "Your return policy here...",
-    # Add more topics
+    "returns": "Your return policy here..."
 }
 ```
 
