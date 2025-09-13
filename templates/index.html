@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Customer Support Email Agent</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        .account { padding: 10px; margin: 10px 0; border: 1px solid #ccc; }
+        button { padding: 10px; margin: 5px; }
+        .connect { background: #4CAF50; color: white; }
+        .disconnect { background: #f44336; color: white; }
+        .control { background: #008CBA; color: white; }
+    </style>
+</head>
+<body>
+    <h1>Customer Support Email Agent</h1>
+    
+    <h2>Gmail Accounts</h2>
+    {% if accounts %}
+        {% for account in accounts %}
+        <div class="account">
+            <strong>{{ account }}</strong>
+            <a href="/disconnect/{{ account }}">
+                <button class="disconnect">Disconnect</button>
+            </a>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p>No accounts connected.</p>
+    {% endif %}
+    
+    <a href="/connect"><button class="connect">Connect Gmail Account</button></a>
+    
+    <h2>Processing Control</h2>
+    <button class="control" onclick="startProcessing()">Start Email Processing</button>
+    <button class="control" onclick="stopProcessing()">Stop Email Processing</button>
+    
+    <script>
+        function startProcessing() {
+            fetch('/start-processing')
+                .then(response => response.json())
+                .then(data => alert('Processing started'));
+        }
+        
+        function stopProcessing() {
+            fetch('/stop-processing')
+                .then(response => response.json())
+                .then(data => alert('Processing stopped'));
+        }
+    </script>
+</body>
+</html>
